@@ -93,7 +93,7 @@ export const authMe = async (req, res) => {
                 message: 'Пользователь не найден'
             })
         }
-
+        console.log(user);
         res.json(user)
     } catch(err){
         console.log(err);
