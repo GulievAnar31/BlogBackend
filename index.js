@@ -18,7 +18,7 @@ app.post('/auth/login', loginValidator, UserController.login)
 app.post('/auth/register', registerValidator, UserController.register)
 app.get('/auth/me', checkAuth, UserController.authMe)
 
-// app.get('/post', PostController.getAll);
+app.get('/posts', checkAuth, PostController.getAll);
 // app.get('/post/:id', PostController.getOne);
 app.post('/post', checkAuth, postCreateValidator, PostController.create);
 // app.delete('/post', PostController.remove);
