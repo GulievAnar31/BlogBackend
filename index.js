@@ -19,10 +19,11 @@ app.post('/auth/register', registerValidator, UserController.register)
 app.get('/auth/me', checkAuth, UserController.authMe)
 
 app.get('/posts', checkAuth, PostController.getAll);
-// app.get('/post/:id', PostController.getOne);
 app.post('/post', checkAuth, postCreateValidator, PostController.create);
-// app.delete('/post', PostController.remove);
-// app.patch('/post', PostController.update);
+
+app.get('/post/:id', PostController.getOne);
+app.delete('/post/:id', checkAuth, PostController.removeOne);
+app.patch('/post/:id', checkAuth, PostController.update);
 
 
 app.listen(4444, (err) => {
