@@ -19,11 +19,11 @@ export const register = async (req, res) => {
 
         const token = jwt.sign({
             _id: user._id,
-        }, 
-        'secret123',
-        {
-            expiresIn: '30d'
-        })
+        },
+            'secret123',
+            {
+                expiresIn: '30d'
+            })
 
         const { passwordHash, userData } = user._doc;
 
@@ -39,7 +39,7 @@ export const login = async (req, res) => {
     try {
         const user = await UserModel.findOne({ email: req.body.email });
 
-        if(!user){
+        if (!user) {
             return req.status(404).json({
                 message: "Пользователь не найден"
             })
@@ -47,7 +47,7 @@ export const login = async (req, res) => {
 
         const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHash);
 
-        if(!isValidPass){
+        if (!isValidPass) {
             return req.status(404).json({
                 message: "Неверный логин или пароль"
             })
@@ -69,7 +69,7 @@ export const login = async (req, res) => {
             ...userData,
             token
         })
-    } catch (err){
+    } catch (err) {
         res.status(500).json({
             message: 'Не удалось авторизоваться.'
         })
@@ -80,14 +80,14 @@ export const authMe = async (req, res) => {
     try {
         const user = await UserModel.findById(req.userId);
 
-        if(!user){
+        if (!user) {
             return res.status(404).json({
                 message: 'Пользователь не найден'
             })
         }
         console.log(user);
         res.json(user)
-    } catch(err){
+    } catch (err) {
         console.log(err);
         res.status(500).json({
             message: 'Не удалось авторизоваться'

@@ -2,10 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
 import { registerValidator, loginValidator, postCreateValidator } from './validations/validations.js';
-import checkAuth from './utils/checkAuth.js';
-import * as UserController from './controllers/UserController.js';
-import * as PostController from './controllers/PostController.js';
-import handleValidationErrors from './utils/handleValidationErrors.js';
+import { checkAuth, handleValidationErrors } from './utils/index.js';
+import { UserController, PostController } from './controllers/index.js';
 
 mongoose
     .connect('mongodb+srv://admin:wwwwww@cluster0.ve9jejm.mongodb.net/blog?retryWrites=true&w=majority')
